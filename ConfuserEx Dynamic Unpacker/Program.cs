@@ -1,4 +1,5 @@
-﻿using dnlib.DotNet;
+﻿
+using dnlib.DotNet;
 using dnlib.DotNet.Writer;
 using System;
 using System.Collections.Generic;
@@ -15,45 +16,118 @@ namespace ConfuserEx_Dynamic_Unpacker
         public static Assembly asm;
         static void Main(string[] args)
         {
+            Console.WriteLine("Yeah confuserex unpacker so what\nDrag and drop file");
+
             string path = Console.ReadLine();
             module = ModuleDefMD.Load(path);
-            asm = Assembly.LoadFrom(path);
-            antitamper();
-            packer();
-            Protections.Constants.constants(); 
-            Protections.ReferenceProxy.ProxyFixer(module);
-            Protections.ControlFlowRun.cleaner(module);
+            Console.WriteLine("Do you want to try a static approach or a dynamic approach ( S/D )");
+            string value = Console.ReadLine();
+            if(value.ToLower() == "s")
+            {
+                antitamper();
+                Protections.ControlFlowRun.cleaner(module);
+                Staticpacker();
+                try
+                {
+                    Protections.StaticStrings.Run(module);
+                    Protections.ReferenceProxy.ProxyFixer(module);
+                    Protections.ControlFlowRun.cleaner(module);
+                }
+                catch
+                {
+                    Console.WriteLine("error happened somewhere apart from tamper and packer im too lazy to implement proper error handling");
+                }
+               
+            }
+            else if(value.ToLower() == "d")
+            {
+                asm = Assembly.LoadFrom(path);
+                antitamper();
+                packer();
+                try
+                {
+                    Protections.StaticStrings.Run(module);
+                    Protections.ReferenceProxy.ProxyFixer(module);
+                    Protections.ControlFlowRun.cleaner(module);
+                }
+                catch
+                {
+                    Console.WriteLine("error happened somewhere apart from tamper and packer im too lazy to implement proper error handling");
+                }
+             
+            }
+            else
+            {
+                Console.Write("Yeah erm you might be a bit of an idiot follow the instructions");
+                Console.ReadLine();
+                return;
+            }
+           
+           
             ModuleWriterOptions writerOptions = new ModuleWriterOptions(module);
             writerOptions.MetaDataOptions.Flags |= MetaDataFlags.PreserveAll;
             writerOptions.Logger = DummyLogger.NoThrowInstance;
             
             module.Write(path + "Cleaned.exe",writerOptions);
         }
+       
         static void packer()
         {
-            if (Protections.Packer.IsPacked(module))
+            try
             {
-                Protections.Packer.findLocal();
-                antitamper();
-                module.EntryPoint = module.ResolveToken(Protections.Packer.epToken) as MethodDef;
-               
+                if (Protections.Packer.IsPacked(module))
+                {
+                    Protections.Packer.findLocal();
+                    antitamper();
+                    module.EntryPoint = module.ResolveToken(Protections.Packer.epToken) as MethodDef;
+
+                }
             }
+            catch
+            {
+                Console.WriteLine("An error in dynamic packer remover happened");
+            }
+            
+        }
+        static void Staticpacker()
+        {
+            try
+            {
+                if (Protections.Packer.IsPacked(module))
+                {
+                    Protections.StaticPacker.Run(module);
+                    antitamper();
+                    module.EntryPoint = module.ResolveToken(Protections.StaticPacker.epToken) as MethodDef;
+
+                }
+            }
+            catch
+            {
+                Console.WriteLine("An error in static packer remover happened");
+            }
+
         }
         static void antitamper()
         {
-
-            if (Protections.AntiTamper.IsTampered(module) == true)
+            try
             {
-                Console.WriteLine("Anti Tamper - Detected");
-                // byte[] array1 = File.ReadAllBytes(assemblyHelper.reflectionAsm.Location);
-                byte[] rawbytes = null;
-                //   rawbytes = File.ReadAllBytes(module2.Location);
-                //  rawbytes = ConvertToArray(module2 as ModuleDefMD);
-                var htdgfd = (module).MetaData.PEImage.CreateFullStream();
+                if (Protections.AntiTamper.IsTampered(module) == true)
+                {
 
-                rawbytes = htdgfd.ReadBytes((int)htdgfd.Length);
-                module = Protections.AntiTamper.UnAntiTamper(module, rawbytes);
+                    byte[] rawbytes = null;
+
+                    var htdgfd = (module).MetaData.PEImage.CreateFullStream();
+
+                    rawbytes = htdgfd.ReadBytes((int)htdgfd.Length);
+                    module = Protections.AntiTamper.UnAntiTamper(module, rawbytes);
+                }
+
             }
+            catch
+            {
+                Console.WriteLine("An error in anti tamper remover happened");
+            }
+            
         }
     }
 }

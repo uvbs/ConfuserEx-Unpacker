@@ -19,6 +19,9 @@ don't like it don't use it simple
 
 
 Credits-
+
 SHADOW - PCRET for his anti tamper code works 
+
 Proxy - lots of help with the control flow
+
 0xd4d - dnlib and de4dot blocks

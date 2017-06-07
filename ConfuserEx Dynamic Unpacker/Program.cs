@@ -29,9 +29,10 @@ namespace ConfuserEx_Dynamic_Unpacker
                 Staticpacker();
                 try
                 {
-                    Protections.StaticStrings.Run(module);
                     Protections.ReferenceProxy.ProxyFixer(module);
                     Protections.ControlFlowRun.cleaner(module);
+                    Protections.StaticStrings.Run(module);
+                    
                 }
                 catch
                 {
@@ -46,7 +47,7 @@ namespace ConfuserEx_Dynamic_Unpacker
                 packer();
                 try
                 {
-                    Protections.StaticStrings.Run(module);
+                    Protections.Constants.constants();
                     Protections.ReferenceProxy.ProxyFixer(module);
                     Protections.ControlFlowRun.cleaner(module);
                 }
@@ -69,6 +70,7 @@ namespace ConfuserEx_Dynamic_Unpacker
             writerOptions.Logger = DummyLogger.NoThrowInstance;
             
             module.Write(path + "Cleaned.exe",writerOptions);
+            Console.ReadLine();
         }
        
         static void packer()

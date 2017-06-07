@@ -45,3 +45,12 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.config
+ConfuserEx Dynamic Unpacker/bin/Debug/ConfuserEx Dynamic Unpacker.exe
+*.pdb
+ConfuserEx Dynamic Unpacker/bin/Debug/dnlib.xml
+*.dll
+ConfuserEx Dynamic Unpacker/obj/Debug/ConfuserEx Dynamic Unpacker.csproj.FileListAbsolute.txt
+*.cache
+ConfuserEx Dynamic Unpacker/obj/Debug/ConfuserEx Dynamic Unpacker.exe
+*.cs

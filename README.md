@@ -1,27 +1,25 @@
 # ConfuserEx-Dynamic-Unpacker
 A dynamic confuserex unpacker that relies on invoke for most things
 
-meh this thing has been sitting in my private section of github for a very long time saw it and decided to download it and give it a try had
-it had a few bugs but the ones i found have been fixed 
-if you find any more let me know i'll 'try' to fix them no promises 
+meh had the dynamic version sitting in my github for a while thought id download it fix a few bugs and add a static mode to it 
 
-right now this will only support vanilla confuserex 0.5.0 above due to control flow i may fix this later on 
+this is only for VANILLA confuserex 0.5.0 and above by vanilla i mean STANDARD NOT MODIFIED confuserex 
 
-i do plan to add support for other protections e.g delegates maybe x86 support in the future 
+i advise you to rty the static route first it should be stable however i have only tested on 4 files i have faith (probably wont work but let me know)
+if static fails try dynamic ode this uses invoke and should be more stable
 
-this most likely wont work on modified files the main issue will most liklely be the packer but it isnt designed for modified confuserex files
+the dynamic mode could potentially work on modified confuserex however i havent tested wont test and dont care about modified versions
 
-this is a really bad tool i advise you not to use it due to the fact it invokes for near all protections for the fact i am lazy 
+this could be a good or bad tool i havent really tested enough coding style has many inconsistencies i have copied and pasted many bits of code from other project to save me as much time as possible. this got boring but i have so many un finished projects thought i might aswell finish this one
 
-maybe someone could intregrate my static string tool into this but for now ill stick with invoke 
-don't like it don't use it simple
+credits - 
+
+SHADOW - PCRET for his anti tamper code and his static packer decryption routine was clever reliable and saved me coming up with my own 
+
+Proxy - control flow - helped me lots on this as stated in my confuserex control flow tool
+
+0xd4d - dnlib de4dot obviously
+
+Codeshark for his isantitampered and ispacked( yet again i know copy and pasting code my bad)
 
 
-
-Credits-
-
-SHADOW - PCRET for his anti tamper code works 
-
-Proxy - lots of help with the control flow
-
-0xd4d - dnlib and de4dot blocks

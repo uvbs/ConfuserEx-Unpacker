@@ -1,0 +1,11 @@
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\ConfuserEx Dynamic Unpacker.exe.config
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\ConfuserEx Dynamic Unpacker.exe
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\ConfuserEx Dynamic Unpacker.pdb
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\dnlib.dll
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\dnlib.pdb
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\dnlib.xml
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.csprojResolveAssemblyReference.cache
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.exe
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.pdb
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\de4dot.blocks.dll
+c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\de4dot.blocks.pdb

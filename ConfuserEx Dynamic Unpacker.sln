@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26403.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConfuserEx Dynamic Unpacker", "ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker.csproj", "{21E98071-183F-4FD1-AE99-734404274BA6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "de4dot.blocks", "..\..\..\GitHub\de4dot\de4dot.blocks\de4dot.blocks.csproj", "{045B96F2-AF80-4C4C-8D27-E38635AC705E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{21E98071-183F-4FD1-AE99-734404274BA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21E98071-183F-4FD1-AE99-734404274BA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21E98071-183F-4FD1-AE99-734404274BA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21E98071-183F-4FD1-AE99-734404274BA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{045B96F2-AF80-4C4C-8D27-E38635AC705E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{045B96F2-AF80-4C4C-8D27-E38635AC705E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{045B96F2-AF80-4C4C-8D27-E38635AC705E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{045B96F2-AF80-4C4C-8D27-E38635AC705E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

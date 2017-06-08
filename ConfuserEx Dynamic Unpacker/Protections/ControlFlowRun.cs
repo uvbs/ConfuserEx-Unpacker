@@ -68,8 +68,20 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                 {
                     if (!methods.HasBody) continue;
 
-                    if (hasCflow(methods))// Console.WriteLine(methods.FullName);
+                    if (hasCflow(methods))
+                    {
+                        if (Program.veryVerbose)
+                        {
+                            Console.ForegroundColor = ConsoleColor.Cyan;
+                            Console.Write("Cleaning Control Flow for " + methods.FullName + "\nThe case order is: ");
+                            Console.ForegroundColor = ConsoleColor.Green;
+                        }
+                            
+                        
                         DeobfuscateCflow(methods);
+                        if(Program.veryVerbose)
+                            Console.WriteLine();
+                    }
 
 
 

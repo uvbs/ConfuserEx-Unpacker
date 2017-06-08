@@ -32,9 +32,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="dnlib">
-      <HintPath>..\..\..\..\GitHub\de4dot\Debug\bin\dnlib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -64,6 +61,10 @@
     <ProjectReference Include="..\..\..\..\GitHub\de4dot\de4dot.blocks\de4dot.blocks.csproj">
       <Project>{045b96f2-af80-4c4c-8d27-e38635ac705e}</Project>
       <Name>de4dot.blocks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\GitHub\dnlib\src\dnlib.csproj">
+      <Project>{fdfc1237-143f-4919-8318-4926901f4639}</Project>
+      <Name>dnlib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

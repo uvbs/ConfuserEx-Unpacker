@@ -14,47 +14,35 @@ namespace ConfuserEx_Dynamic_Unpacker
     {
         public static ModuleDefMD module;
         public static Assembly asm;
+       
+        public static bool veryVerbose =false;
+        private static string path = null;
+        private static string mode;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("Yeah confuserex unpacker so what\nDrag and drop file");
+            Console.ForegroundColor = ConsoleColor.Green;
+            optionParser(args);
+            Console.WriteLine("Yeah confuserex unpacker so what");
 
-            string path = Console.ReadLine();
-            module = ModuleDefMD.Load(path);
-            Console.WriteLine("Do you want to try a static approach or a dynamic approach ( S/D )");
-            string value = Console.ReadLine();
-            if(value.ToLower() == "s")
+            if (path == null||mode == null)
             {
-                antitamper();
-                Protections.ControlFlowRun.cleaner(module);
-                Staticpacker();
-                try
-                {
-                    Protections.ReferenceProxy.ProxyFixer(module);
-                    Protections.ControlFlowRun.cleaner(module);
-                    Protections.StaticStrings.Run(module);
-                    
-                }
-                catch
-                {
-                    Console.WriteLine("error happened somewhere apart from tamper and packer im too lazy to implement proper error handling");
-                }
+                Console.WriteLine("Check args make sure path and either -d or -s is included (Dynamic or static)"); Console.ReadLine(); return;
+            }
+                
+            module = ModuleDefMD.Load(path);
+            
+           
+          
+            if(mode.ToLower() == "static")
+            {
+                staticRoute();
                
             }
-            else if(value.ToLower() == "d")
+            else if(mode.ToLower() == "dynamic")
             {
                 asm = Assembly.LoadFrom(path);
-                antitamper();
-                packer();
-                try
-                {
-                    Protections.Constants.constants();
-                    Protections.ReferenceProxy.ProxyFixer(module);
-                    Protections.ControlFlowRun.cleaner(module);
-                }
-                catch
-                {
-                    Console.WriteLine("error happened somewhere apart from tamper and packer im too lazy to implement proper error handling");
-                }
+                dynamicRoute();
              
             }
             else
@@ -72,16 +60,93 @@ namespace ConfuserEx_Dynamic_Unpacker
             module.Write(path + "Cleaned.exe",writerOptions);
             Console.ReadLine();
         }
-       
+        static void staticRoute()
+        {
+            
+            antitamper();
+            Protections.ControlFlowRun.cleaner(module);
+            Staticpacker();
+            try
+            {
+                Console.WriteLine("[!] Cleaning Proxy Calls");
+                int amountProxy = Protections.ReferenceProxy.ProxyFixer(module);
+                Console.WriteLine("[!] Amount Of Proxy Calls Fixed: "+amountProxy);
+                Protections.ControlFlowRun.cleaner(module);
+                Console.WriteLine("[!] Decrytping Strings");
+                int strings = Protections.StaticStrings.Run(module);
+                Console.WriteLine("[!] Amount Of Strings Decrypted: " + strings);
+
+            }
+            catch
+            {
+                Console.WriteLine("error happened somewhere apart from tamper and packer im too lazy to implement proper error handling");
+            }
+        }
+        static void dynamicRoute()
+        {
+
+            antitamper();
+            Protections.ControlFlowRun.cleaner(module);
+            packer();
+            try
+            {
+                Console.WriteLine("[!] Cleaning Proxy Calls");
+                int amountProxy = Protections.ReferenceProxy.ProxyFixer(module);
+                Console.WriteLine("[!] Amount Of Proxy Calls Fixed: " + amountProxy);
+                Protections.ControlFlowRun.cleaner(module);
+                Console.WriteLine("[!] Decrytping Strings");
+                int strings = Protections.Constants.constants();
+                Console.WriteLine("[!] Amount Of Strings Decrypted: " + strings);
+
+            }
+            catch
+            {
+                Console.WriteLine("error happened somewhere apart from tamper and packer im too lazy to implement proper error handling");
+            }
+        }
+        static void optionParser(string[] str)
+        {
+            foreach(string arg in str)
+            {
+                switch (arg)
+                {
+                   
+                    case "-vv":
+                        veryVerbose = true;
+                      
+                        break;
+                    case "-d":
+                        mode = "dynamic";
+                        break;
+                    case "-s":
+                        mode = "static";
+                        break;
+                    default:
+                        path = arg;
+                        break;
+                }
+            }
+        }
         static void packer()
         {
             try
             {
                 if (Protections.Packer.IsPacked(module))
                 {
-                    Protections.Packer.findLocal();
+                    Console.WriteLine("[!] Compressor Detected");
+                    try
+                    {
+                        Protections.Packer.findLocal();
+                        Console.WriteLine("[!] Compressor Removed Successfully");
+                        Console.WriteLine("[!] Now Cleaning The koi Module");
+                    }
+                    catch
+                    {
+                        Console.WriteLine("[!] Compressor Failed To Remove");
+                    }
+
                     antitamper();
-                    module.EntryPoint = module.ResolveToken(Protections.Packer.epToken) as MethodDef;
+                    module.EntryPoint = module.ResolveToken(Protections.StaticPacker.epToken) as MethodDef;
 
                 }
             }
@@ -97,7 +162,18 @@ namespace ConfuserEx_Dynamic_Unpacker
             {
                 if (Protections.Packer.IsPacked(module))
                 {
-                    Protections.StaticPacker.Run(module);
+                    Console.WriteLine("[!] Compressor Detected");
+                    try
+                    {
+                        Protections.StaticPacker.Run(module);
+                        Console.WriteLine("[!] Compressor Removed Successfully");
+                        Console.WriteLine("[!] Now Cleaning The koi Module");
+                    }
+                    catch
+                    {
+                        Console.WriteLine("[!] Compressor Failed To Remove");
+                    }
+                    
                     antitamper();
                     module.EntryPoint = module.ResolveToken(Protections.StaticPacker.epToken) as MethodDef;
 
@@ -115,13 +191,23 @@ namespace ConfuserEx_Dynamic_Unpacker
             {
                 if (Protections.AntiTamper.IsTampered(module) == true)
                 {
+                    Console.WriteLine("[!] Anti Tamper Detected");
 
                     byte[] rawbytes = null;
 
                     var htdgfd = (module).MetaData.PEImage.CreateFullStream();
 
                     rawbytes = htdgfd.ReadBytes((int)htdgfd.Length);
-                    module = Protections.AntiTamper.UnAntiTamper(module, rawbytes);
+                    try
+                    {
+                        module = Protections.AntiTamper.UnAntiTamper(module, rawbytes);
+                        Console.WriteLine("[!] Anti Tamper Removed Successfully");
+                    }
+                    catch
+                    {
+                        Console.WriteLine("[!] Anti Tamper Failed To Remove");
+                    }
+                
                 }
 
             }

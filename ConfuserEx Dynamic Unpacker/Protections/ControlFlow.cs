@@ -80,6 +80,13 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                     int val1 = block.LastInstr.GetLdcI4Value();
                     ins.Push(new Int32Value(val1));
                     int nextCase = emulateCase(out int localValue);
+                    if (Program.veryVerbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(nextCase+",");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                        
                     block.ReplaceLastNonBranchWithBranch(0, targetBlocks[nextCase]);
                     replace(targetBlocks[nextCase], localValue);
 
@@ -92,6 +99,12 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                     Int32Value val1 = (Int32Value)ins.Pop();
                     ins.Push(val1);
                     int nextCase = emulateCase(out int localValue);
+                    if (Program.veryVerbose)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write(nextCase+",");
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
                     block.ReplaceLastNonBranchWithBranch(0, targetBlocks[nextCase]);
                     replace(targetBlocks[nextCase], localValue);
 
@@ -108,6 +121,20 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                             int val1 = source.FirstInstr.GetLdcI4Value();
                             ins.Push(new Int32Value(val1));
                             int nextCase = emulateCase(out int localValue);
+                            if (Program.veryVerbose)
+                            {
+                                Console.ForegroundColor = ConsoleColor.Cyan;
+                                if (source == sources[0])
+                                {
+                                    Console.Write("True: "+nextCase + ",");
+
+                                }
+                                else
+                                {
+                                    Console.Write("False: " + nextCase + ",");
+                                }
+                                Console.ForegroundColor = ConsoleColor.Green;
+                            }
                             source.ReplaceLastNonBranchWithBranch(0, targetBlocks[nextCase]);
                             replace(targetBlocks[nextCase], localValue);
 
@@ -143,6 +170,20 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                                 ins.Emulate(instr, l - 5, l);
 
                                 int nextCase = emulateCase(out int localValue);
+                                if (Program.veryVerbose)
+                                {
+                                    Console.ForegroundColor = ConsoleColor.Cyan;
+                                    if (source == sources[0])
+                                    {
+                                        Console.Write("True: " + nextCase + ",");
+
+                                    }
+                                    else
+                                    {
+                                        Console.Write("False: " + nextCase + ",");
+                                    }
+                                    Console.ForegroundColor = ConsoleColor.Green;
+                                }
                                 source.ReplaceLastNonBranchWithBranch(0, targetBlocks[nextCase]);
                                 replace(targetBlocks[nextCase], localValue);
                                 try

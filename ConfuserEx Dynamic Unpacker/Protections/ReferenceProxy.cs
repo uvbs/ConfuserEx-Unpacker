@@ -41,8 +41,9 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
 
         }
 
-        public static void ProxyFixer(ModuleDefMD module)
+        public static int ProxyFixer(ModuleDefMD module)
         {
+            int amount = 0;
             foreach (TypeDef type in module.Types)
             {
                 foreach (MethodDef method in type.Methods)
@@ -68,7 +69,7 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                                         {
                                             method.Body.Instructions[i].OpCode = opCode;
                                             method.Body.Instructions[i].Operand = proxyValues;
-
+                                            amount++;
 
                                             if (!junkMethods.Contains(methodDef))
                                             {
@@ -86,6 +87,7 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                 }
             }
             RemoveJunkMethods(module);
+            return amount;
         }
         private static object GetProxyValues(MethodDef method, out OpCode opCode)
         {

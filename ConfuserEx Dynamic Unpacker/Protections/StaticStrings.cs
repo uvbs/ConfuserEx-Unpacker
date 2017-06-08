@@ -162,18 +162,25 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
                                 DecryptionMethod = (MethodSpec)method.Body.Instructions[i].Operand;
                                 if (DecryptionMethod.FullName.ToLower().Contains("string"))
                                 {
-                                    string DecryptedStringValue = GetParamValues(module, DecryptionMethod, (uint)method.Body.Instructions[i - 1].GetLdcI4Value());
+                                    int param = method.Body.Instructions[i - 1].GetLdcI4Value();
+                                    string DecryptedStringValue = GetParamValues(module, DecryptionMethod, (uint)param);
                                     if (DecryptedStringValue != null)
                                     {
                                         method.Body.Instructions[i].OpCode = OpCodes.Nop;
                                         method.Body.Instructions[i - 1].OpCode = OpCodes.Ldstr;
                                         method.Body.Instructions[i - 1].Operand = DecryptedStringValue;
+                                        if (Program.veryVerbose)
+                                        {
+                                            Console.ForegroundColor = ConsoleColor.Cyan;
+                                            Console.WriteLine(string.Format("Encrypted String Found In Method {0} With Param of {1} the decrypted string is {2}", method.Name, param.ToString(), DecryptedStringValue));
+                                            Console.ForegroundColor = ConsoleColor.Green;
+                                        }
                                         StringsDecrypted++;
                                     }
                                 }
 
                             }
-                            catch
+                            catch(Exception ex)
                             {
 
                             }

@@ -9,3 +9,14 @@ c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker
 c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.exe
 c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.pdb
 c:\users\owner\documents\visual studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.csprojResolveAssemblyReference.cache
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\ConfuserEx Dynamic Unpacker.exe.config
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\ConfuserEx Dynamic Unpacker.exe
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\ConfuserEx Dynamic Unpacker.pdb
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\de4dot.blocks.dll
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\dnlib.dll
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\de4dot.blocks.pdb
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\dnlib.pdb
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\bin\Debug\dnlib.xml
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.csprojResolveAssemblyReference.cache
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.exe
+D:\backup8-6-17\docs\Visual Studio 2017\Projects\ConfuserEx Dynamic Unpacker\ConfuserEx Dynamic Unpacker\obj\Debug\ConfuserEx Dynamic Unpacker.pdb

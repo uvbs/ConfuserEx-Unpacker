@@ -1,5 +1,11 @@
 *.exe
-*.pdb
-*.dll
+
 ConfuserEx Dynamic Unpacker/bin/Debug/dnlib.xml
 *.cache
+ConfuserEx Dynamic Unpacker/bin/Debug/dnlib.pdb
+ConfuserEx Dynamic Unpacker/obj/Debug/ConfuserEx Dynamic Unpacker.pdb
+ConfuserEx Dynamic Unpacker/bin/Debug/dnlib.dll
+ConfuserEx Dynamic Unpacker/bin/Debug/de4dot.blocks.pdb
+ConfuserEx Dynamic Unpacker/obj/Debug/TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs
+ConfuserEx Dynamic Unpacker/bin/Debug/ConfuserEx Dynamic Unpacker.pdb
+ConfuserEx Dynamic Unpacker/bin/Debug/de4dot.blocks.dll

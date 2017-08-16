@@ -4,6 +4,7 @@ using dnlib.DotNet;
 using dnlib.DotNet.Emit;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -205,42 +206,44 @@ namespace ConfuserEx_Dynamic_Unpacker.Protections
 
             return modified;
         }
-        public bool replace(Block test, int locVal)
-        {
+		bool replace(Block test, int locVal)
+		{
 
-            //we replace the ldloc values with the correct ldc value 
-            if (test.IsConditionalBranch())
-            {
-                //if it happens to be a conditional block then the ldloc wont be in the current block it will be in the fallthrough block
-                //normally the fallthrough block is the switch block but then fallthrough again you get the correct block you need to replace
-                //however this bit i dont really understand as much but it works so what ever but sometimes the fallthrough block is the first fallthrough not the second so we just set it to the first
-                if (test.FallThrough.FallThrough == switchBlock)
-                {
+			//we replace the ldloc values with the correct ldc value 
+			if (test.IsConditionalBranch())
+			{
+				//if it happens to be a conditional block then the ldloc wont be in the current block it will be in the fallthrough block
+				//normally the fallthrough block is the switch block but then fallthrough again you get the correct block you need to replace
+				//however this bit i dont really understand as much but it works so what ever but sometimes the fallthrough block is the first fallthrough not the second so we just set it to the first
+				if (test.FallThrough.FallThrough == switchBlock)
+				{
 
-                    test = test.FallThrough;
-                }
-                else
-                {
-                    test = test.FallThrough.FallThrough;
+					test = test.FallThrough;
+				}
+				else
+				{
+					test = test.FallThrough.FallThrough;
 
-                }
+				}
 
-            }
-            if (test == switchBlock) return false;
+			}
+			if (test.LastInstr.OpCode == OpCodes.Switch)
+				test = test.FallThrough;
+			if (test == switchBlock) return false;
 
-            for (int i = 0; i < test.Instructions.Count; i++)
-            {
-                if (test.Instructions[i].Instruction.GetLocal(blocks.Method.Body.Variables) == localSwitch)
-                {
+			for (int i = 0; i < test.Instructions.Count; i++)
+			{
+				if (test.Instructions[i].Instruction.GetLocal(blocks.Method.Body.Variables) == localSwitch)
+				{
 
-                    //check to see if the local is the same as the one from the switch block and replace it
-                    test.Instructions[i] = new Instr(Instruction.CreateLdcI4(locVal));
-                    return true;
-                }
-            }
-            return false;
-        }
-        public int emulateCase(out int localValueasInt)
+					//check to see if the local is the same as the one from the switch block and replace it
+					test.Instructions[i] = new Instr(Instruction.CreateLdcI4(locVal));
+					return true;
+				}
+			}
+			return false;
+		}
+		public int emulateCase(out int localValueasInt)
         {
             ins.Emulate(switchBlock.Instructions, 0, switchBlock.Instructions.Count - 1);
             var localValue = ins.GetLocal(localSwitch) as Int32Value;
